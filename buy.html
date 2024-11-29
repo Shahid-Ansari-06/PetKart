@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetKart</title>
+    <link rel="shortcut icon" type="png" href="images.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+        }
+        .buy-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .buy-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .buy-container button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #4caf50;
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .buy-container button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Complete Your Purchase</h1>
+
+    <div class="buy-container">
+        <h3 id="dogName"></h3>
+        <img id="dogImage" src="" alt="" style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px;">
+        <form id="purchaseForm">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="text" id="mobile" placeholder="Mobile Number" required>
+            <input type="text" id="address" placeholder="Shipping Address" required>
+            <button type="submit">Confirm Purchase</button>
+        </form>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const dogName = urlParams.get('name');
+        const dogImage = urlParams.get('image');
+
+        document.getElementById('dogName').textContent = dogName;
+        document.getElementById('dogImage').src = dogImage;
+
+        document.getElementById('purchaseForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const mobile = document.getElementById('mobile').value;
+            const address = document.getElementById('address').value;
+
+            alert(`Thank you for your purchase, ${name}! Your dog will be delivered to ${address}.`);
+        });
+    </script>
+</body>
+</html>
